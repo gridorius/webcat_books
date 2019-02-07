@@ -6,5 +6,19 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-    //
+    public function add(Request $r){
+
+    }
+
+    public function get(Request $r, $id){
+
+    }
+
+    public function edit(Request $r){
+
+    }
+
+    public function remove($id){
+
+    }
 }
