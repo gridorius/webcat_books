@@ -13,6 +13,14 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/v1/books/list', 'BookController@getAll');
+Route::get('/v1/books/{id}', 'BookController@get');
+Route::post('/v1/books', 'BookController@add')->middleware('isAdmin');
+Route::post('/v1/books/{id}', 'BookController@edit')->middleware('isAdmin');
+Route::delete('/v1/books/{id}', 'BookController@remove')->middleware('isAdmin');
+
+Route::get('/v1/users/list', 'UserController@getAll')->middleware('isAdmin');
+Route::get('/v1/users/{id}', 'UserController@get')->middleware('isAdmin');
+Route::post('/v1/users', 'UserController@add')->middleware('isAdmin');
+Route::post('/v1/users/{id}', 'UserController@edit')->middleware('isAdmin');
+Route::delete('/v1/users/{id}', 'UserController@remove')->middleware('isAdmin');

@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('login');
             $table->string('password');
+            $table->string('token')->nullable();
             $table->string('role')->default(6);
         });
     }
