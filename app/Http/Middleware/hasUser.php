@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\User;
 use Closure;
 
 class hasUser
@@ -15,6 +16,11 @@ class hasUser
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        if(User::find($request->route()->id))
+          return $next($request);
+        else
+          return response(['status' => false])
+          ->header('content-type', 'application/json')
+          ->setStatusCode(404, 'User not found');
     }
 }
