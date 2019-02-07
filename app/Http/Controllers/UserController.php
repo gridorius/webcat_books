@@ -23,9 +23,9 @@ class UserController extends Controller
   }
 
   public function get($id){
-    return response(
-      User::where('user_id', $id)->first()
-      )->setStatusCode(200, 'found user');
+    $user = User::where('user_id', $id)->first();
+    $user->books;
+    return response($user)->setStatusCode(200, 'found user');
   }
 
   public function edit(Request $r, $id){

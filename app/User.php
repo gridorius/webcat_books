@@ -8,8 +8,7 @@ class User extends Model
 {
     protected $primaryKey = 'user_id';
     public $timestamps = false;
-
     public function books(){
-    return $this->hasMany('App\Book');
+    return $this->hasMany('App\Book', 'user_id', 'user_id');
   }
 }

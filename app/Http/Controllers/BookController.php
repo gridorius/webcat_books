@@ -10,6 +10,7 @@ class BookController extends Controller
     public function add(Request $r){
       $book = new Book();
       $book->name = $r->name;
+      $book->user_id = $r->user_id;
       $book->save();
       return response(['status' => true])->setStatusCode(200, 'successful create');
     }
@@ -21,9 +22,11 @@ class BookController extends Controller
     }
 
     public function get($id){
-      return response(
-        Book::where('book_id', $id)->first()
-        )header('content-type', 'application/json')->setStatusCode(200, 'found book');
+      $book = Book::where('book_id', $id)->first();
+      $book->user;
+      return response($book)
+      ->header('content-type', 'application/json')
+      ->setStatusCode(200, 'found book');
     }
 
     public function edit(Request $r, $id){
